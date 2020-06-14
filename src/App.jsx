@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+
+import NavBar from './components/common/NavBar'
 import Table from './components/common/Table'
 import Form from './components/common/Form'
 
-// import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
 const data = [
@@ -15,7 +16,6 @@ const columns = Object.keys(data[0])
 
 function App () {
   const [people, setPeople] = useState(data)
-  console.log(people)
 
   const handleAppPerson = (personData) => {
     const data = [...people, personData]
@@ -36,19 +36,23 @@ function App () {
   }
 
   return (
-    <div className="container">
-      <Table
-        data={people}
-        columns={columns}
-        tableDescriptor="People"
-        onDeleteClick={handleDeletePerson}
-      />
-      <Form
-        initialData={getInitialPeopleData()}
-        columns={columns}
-        onAddData={handleAppPerson}
-      />
-    </div>
+    <>
+      <NavBar />
+
+      <div className="container mt-5">
+        <Table
+          data={people}
+          columns={columns}
+          tableDescriptor="People"
+          onDeleteClick={handleDeletePerson}
+        />
+        <Form
+          initialData={getInitialPeopleData()}
+          columns={columns}
+          onAddData={handleAppPerson}
+        />
+      </div>
+    </>
   )
 }
 
