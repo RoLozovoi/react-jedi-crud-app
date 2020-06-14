@@ -22,6 +22,12 @@ function App () {
     setPeople(data)
   }
 
+  const handleDeletePerson = personId => {
+    setPeople(
+      people.filter(p => p.id !== personId)
+    )
+  }
+
   const getInitialPeopleData = () => {
     return columns.reduce((cols, columnName) => {
       cols[columnName] = ''
@@ -35,6 +41,7 @@ function App () {
         data={people}
         columns={columns}
         tableDescriptor="People"
+        onDeleteClick={handleDeletePerson}
       />
       <Form
         initialData={getInitialPeopleData()}
