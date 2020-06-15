@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
 import NavBar from './components/common/NavBar'
-import Table from './components/common/Table'
-import Form from './components/common/Form'
+import Route from './components/common/Route'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -12,12 +11,10 @@ const data = [
   { first: 'Steve', last: 'Smith', handle: '@ssteve', id: '3' }
 ]
 
-const columns = Object.keys(data[0])
-
 function App () {
   const [people, setPeople] = useState(data)
 
-  const handleAppPerson = (personData) => {
+  const handleAddPerson = (personData) => {
     const data = [...people, personData]
     setPeople(data)
   }
@@ -28,30 +25,16 @@ function App () {
     )
   }
 
-  const getInitialPeopleData = () => {
-    return columns.reduce((cols, columnName) => {
-      cols[columnName] = ''
-      return cols
-    }, {})
-  }
-
   return (
     <>
       <NavBar />
 
-      <div className="container mt-5">
-        <Table
-          data={people}
-          columns={columns}
-          tableDescriptor="People"
-          onDeleteClick={handleDeletePerson}
-        />
-        <Form
-          initialData={getInitialPeopleData()}
-          columns={columns}
-          onAddData={handleAppPerson}
-        />
-      </div>
+      <Route
+        routeName='People'
+        data={people}
+        onRowDelete={handleDeletePerson}
+        onFormSubmit={handleAddPerson}
+      />
     </>
   )
 }

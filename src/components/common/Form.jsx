@@ -1,14 +1,23 @@
 import React, { useState } from 'react'
+
 import Input from './Input'
 import Button from './Button'
 
-const Form = ({ columns, initialData, onAddData }) => {
-  const [personData, setPersonData] = useState(initialData)
+const createInitialStateFromColumns = columns => columns.reduce(
+  (acc, cur) => {
+    acc[cur] = ''
+    return acc
+  }, {}
+)
 
-  const handleClick = (event) => {
-    console.log(event)
+const Form = ({ columns, onSubmit }) => {
+  const [personData, setPersonData] = useState(
+    createInitialStateFromColumns(columns)
+  )
+
+  const handleSubmit = (event) => {
     event.preventDefault()
-    onAddData(personData)
+    onSubmit(personData)
   }
 
   const handleChange = (event) => {
@@ -33,7 +42,7 @@ const Form = ({ columns, initialData, onAddData }) => {
       <Button
         label="Save"
         classes="alert alert-danger"
-        onClick={handleClick}
+        onClick={handleSubmit}
       />
     </form>
   )
