@@ -7,7 +7,7 @@ const Route = ({ routeName, data, onRowDelete, onFormSubmit }) => {
   if (data.length === 0) {
     return (
       <div className="container mt-5">
-        <h2>There is no data for {routeName}</h2>
+        <h2 style={{ textAlign: 'center' }}>There is no data for {routeName}</h2>
       </div>
     )
   }

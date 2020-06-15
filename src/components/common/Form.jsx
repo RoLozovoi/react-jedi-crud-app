@@ -41,7 +41,7 @@ const Form = ({ columns, onSubmit }) => {
       ))}
       <Button
         label="Save"
-        classes="alert alert-danger"
+        classes="btn btn-success"
         onClick={handleSubmit}
       />
     </form>

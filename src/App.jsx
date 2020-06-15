@@ -5,6 +5,7 @@ import NavBar from './components/common/NavBar'
 import PeopleRoute from './components/routes/PeopleRoute'
 import PlanetsRoute from './components/routes/PlanetsRoute'
 import StarshipsRoute from './components/routes/StarshipsRoute'
+import NoMatchRoute from './components/routes/NoMatchRoute'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -27,6 +28,10 @@ const App = () => (
 
       <Route exact path='/'>
         <Redirect to='/people' />
+      </Route>
+
+      <Route path='*'>
+        <NoMatchRoute />
       </Route>
     </Switch>
   </Router>
