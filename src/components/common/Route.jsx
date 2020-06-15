@@ -4,10 +4,19 @@ import Table from './Table'
 import Form from './Form'
 
 const Route = ({ routeName, data, onRowDelete, onFormSubmit }) => {
+  if (data.length === 0) {
+    return (
+      <div className="container mt-5">
+        <h2>There is no data for {routeName}</h2>
+      </div>
+    )
+  }
+
   const columns = Object.keys(data[0])
 
   return (
     <div className="container mt-5">
+
       <Table
         data={data}
         columns={columns}
@@ -18,6 +27,7 @@ const Route = ({ routeName, data, onRowDelete, onFormSubmit }) => {
         columns={columns}
         onSubmit={onFormSubmit}
       />
+
     </div>
   )
 }
