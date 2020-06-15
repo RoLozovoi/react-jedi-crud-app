@@ -1,42 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import NavBar from './components/common/NavBar'
-import Route from './components/common/Route'
+import PeopleRouter from './components/routes/PeopleRoute'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
-const data = [
-  { first: 'Mark', last: 'Otto', handle: '@motto', id: '1' },
-  { first: 'Carl', last: 'Reno', handle: '@ceno', id: '2' },
-  { first: 'Steve', last: 'Smith', handle: '@ssteve', id: '3' }
-]
+const App = () => (
+  <Router>
+    <NavBar />
 
-function App () {
-  const [people, setPeople] = useState(data)
+    <Switch>
+      <Route path='/people'>
+        <PeopleRouter />
+      </Route>
 
-  const handleAddPerson = (personData) => {
-    const data = [...people, personData]
-    setPeople(data)
-  }
-
-  const handleDeletePerson = personId => {
-    setPeople(
-      people.filter(p => p.id !== personId)
-    )
-  }
-
-  return (
-    <>
-      <NavBar />
-
-      <Route
-        routeName='People'
-        data={people}
-        onRowDelete={handleDeletePerson}
-        onFormSubmit={handleAddPerson}
-      />
-    </>
-  )
-}
+      <Route exact path='/'>
+        <Redirect to='/people' />
+      </Route>
+    </Switch>
+  </Router>
+)
 
 export default App
