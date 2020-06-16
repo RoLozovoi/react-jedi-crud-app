@@ -11,6 +11,7 @@ import {
 import People from './components/People';
 import Planets from './components/Planets';
 import Starships from './components/Starships';
+import NotFound from './components/NotFound';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route path="/starships">
           <Starships />
+        </Route>
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </Router>
