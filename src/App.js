@@ -1,48 +1,41 @@
-import React, { useState } from 'react';
-import Table from "./components/common/Table";
-import Form from './components/common/Form'
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  NavLink,
+  Redirect
+} from 'react-router-dom';
 
-// import './App.css';
+import People from './components/People';
+
 import 'bootstrap/dist/css/bootstrap.css';
 
-const data = [
-    {first: 'Mark', last: 'Otto', handle: '@motto', id: '1'},
-    {first: 'Carl', last: 'Reno', handle: '@ceno', id: '2'},
-    {first: 'Steve', last: 'Smith', handle: '@ssteve', id: '3'}
-]
-
-const columns = Object.keys(data[0]);
-
 function App() {
-    const [people, setPeople] = useState(data);
-    console.log(people);
-
-    const handleAppPerson = (personData) => {
-        const data = [...people, personData];
-        setPeople(data)
-    }
-
-    const getInitialPeopleData = () => {
-        return columns.reduce((cols, columnName) => {
-            cols[columnName] = "";
-            return cols;
-        }, {})
-    }
-
-    return (
-        <div className="container">
-            <Table
-                data={people}
-                columns={columns}
-                tableDescriptor="People"
-            />
-            <Form
-                initialData={getInitialPeopleData()}
-                columns={columns}
-                onAddData={handleAppPerson}
-            />
+  return (
+    <Router>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <Link className="navbar-brand" to="/">Star Wars</Link>
+        <div class="navbar-nav">
+          <NavLink className="nav-item nav-link" activeClassName="active" to="/people">People</NavLink>
+          <NavLink className="nav-item nav-link" activeClassName="active" to="/planets">Planets</NavLink>
+          <NavLink className="nav-item nav-link" activeClassName="active" to="/starships">Starships</NavLink>
         </div>
-    );
+      </nav>
+
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={() => <Redirect to="/people"></Redirect>}>
+        </Route>
+        <Route path="/people">
+          <People />
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
 
 export default App;
