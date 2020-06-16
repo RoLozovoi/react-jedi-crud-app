@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 
 import People from './components/People';
+import Planets from './components/Planets';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route path="/people">
           <People />
+        </Route>
+        <Route path="/planets">
+          <Planets />
         </Route>
       </Switch>
     </Router>
