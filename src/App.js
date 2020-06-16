@@ -10,6 +10,7 @@ import {
 
 import People from './components/People';
 import Planets from './components/Planets';
+import Starships from './components/Starships';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route path="/planets">
           <Planets />
+        </Route>
+        <Route path="/starships">
+          <Starships />
         </Route>
       </Switch>
     </Router>
